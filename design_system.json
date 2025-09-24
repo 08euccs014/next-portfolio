@@ -1,0 +1,267 @@
+{
+  "designSystem": {
+    "name": "Modern SaaS Landing Page Design System",
+    "description": "A comprehensive design system for modern SaaS applications with emphasis on fintech/business automation tools",
+    
+    "colorPalette": {
+      "primary": {
+        "deepPurple": "#4A4E8C",
+        "mediumPurple": "#6366F1",
+        "lightPurple": "#8B5CF6",
+        "description": "Primary brand colors used for headers, CTAs, and key elements"
+      },
+      "accent": {
+        "brightPink": "#EC4899",
+        "coral": "#F97316",
+        "brightYellow": "#FCD34D",
+        "turquoise": "#06B6D4",
+        "description": "Accent colors for highlights, illustrations, and decorative elements"
+      },
+      "neutral": {
+        "white": "#FFFFFF",
+        "lightGray": "#F8FAFC",
+        "mediumGray": "#64748B",
+        "darkText": "#1E293B",
+        "description": "Neutral colors for backgrounds, text, and subtle elements"
+      }
+    },
+    
+    "typography": {
+      "headings": {
+        "h1": {
+          "fontSize": "3.5rem",
+          "fontWeight": "700",
+          "lineHeight": "1.1",
+          "letterSpacing": "-0.02em",
+          "description": "Hero headings with strong visual impact"
+        },
+        "h2": {
+          "fontSize": "2.5rem",
+          "fontWeight": "600",
+          "lineHeight": "1.2",
+          "description": "Section headings"
+        },
+        "h3": {
+          "fontSize": "1.5rem",
+          "fontWeight": "600",
+          "lineHeight": "1.3",
+          "description": "Subsection headings"
+        }
+      },
+      "body": {
+        "large": {
+          "fontSize": "1.125rem",
+          "lineHeight": "1.6",
+          "description": "Hero subtext and important descriptions"
+        },
+        "regular": {
+          "fontSize": "1rem",
+          "lineHeight": "1.5",
+          "description": "Standard body text"
+        },
+        "small": {
+          "fontSize": "0.875rem",
+          "lineHeight": "1.4",
+          "description": "Secondary information and captions"
+        }
+      },
+      "fontFamily": "Modern sans-serif (Helvetica, Inter, or similar)",
+      "characteristics": "Clean, highly readable, professional"
+    },
+    
+    "layoutStructure": {
+      "navigation": {
+        "type": "horizontal",
+        "position": "top",
+        "style": "minimal",
+        "elements": ["logo", "navigation_links", "cta_buttons"],
+        "alignment": "space-between",
+        "backgroundColor": "transparent_or_primary",
+        "description": "Clean navigation with logo left, menu center/right, CTAs right"
+      },
+      
+      "heroSection": {
+        "layout": "centered",
+        "structure": ["headline", "subheadline", "cta_button", "hero_visual"],
+        "visualPlacement": "right_or_below",
+        "backgroundStyle": "gradient_or_solid_primary",
+        "textAlignment": "left",
+        "description": "Bold headline with supporting visual element"
+      },
+      
+      "contentSections": {
+        "pattern": "alternating",
+        "structure": ["text_left_visual_right", "text_right_visual_left"],
+        "spacing": "generous_vertical",
+        "backgroundColor": "alternating_white_light_gray",
+        "description": "Content sections with alternating text/visual layout"
+      },
+      
+      "grid": {
+        "maxWidth": "1200px",
+        "columns": 12,
+        "gutters": "2rem",
+        "margins": "responsive",
+        "description": "Standard responsive grid system"
+      }
+    },
+    
+    "componentPatterns": {
+      "buttons": {
+        "primary": {
+          "style": "solid",
+          "borderRadius": "0.5rem",
+          "padding": "0.75rem 1.5rem",
+          "fontSize": "1rem",
+          "fontWeight": "600",
+          "backgroundColor": "primary_color",
+          "textColor": "white",
+          "hoverEffect": "slight_scale_and_shadow",
+          "description": "Main call-to-action buttons"
+        },
+        "secondary": {
+          "style": "outline",
+          "borderRadius": "0.5rem",
+          "padding": "0.75rem 1.5rem",
+          "border": "2px solid primary_color",
+          "textColor": "primary_color",
+          "hoverEffect": "fill_background",
+          "description": "Secondary action buttons"
+        }
+      },
+      
+      "cards": {
+        "style": "clean_minimal",
+        "borderRadius": "1rem",
+        "padding": "2rem",
+        "backgroundColor": "white",
+        "shadow": "subtle_drop_shadow",
+        "border": "none_or_subtle",
+        "hoverEffect": "slight_lift_and_shadow_increase",
+        "description": "Content cards with subtle shadows"
+      },
+      
+      "illustrations": {
+        "style": "modern_abstract",
+        "elements": ["geometric_shapes", "gradients", "organic_curves"],
+        "colors": "accent_palette",
+        "complexity": "medium",
+        "integration": "seamless_with_layout",
+        "description": "Abstract geometric illustrations with brand colors"
+      },
+      
+      "iconography": {
+        "style": "minimal_line_or_solid",
+        "strokeWidth": "1.5px",
+        "size": "24px_standard",
+        "color": "contextual",
+        "description": "Simple, consistent iconography"
+      }
+    },
+    
+    "visualElements": {
+      "backgrounds": {
+        "gradients": {
+          "primary": "purple_to_blue_diagonal",
+          "accent": "pink_to_orange_subtle",
+          "usage": "hero_sections_and_emphasis_areas"
+        },
+        "patterns": {
+          "organic_shapes": "abstract_floating_elements",
+          "geometric": "subtle_grid_or_dot_patterns",
+          "usage": "background_decoration"
+        }
+      },
+      
+      "imagery": {
+        "photography": {
+          "style": "authentic_professional",
+          "subjects": ["real_people", "work_environments", "technology"],
+          "treatment": "bright_natural_lighting",
+          "integration": "circular_masks_or_organic_shapes"
+        },
+        "mockups": {
+          "devices": ["mobile_phones", "tablets", "laptops"],
+          "presentation": "realistic_3d_perspective",
+          "integration": "floating_or_angled_placement"
+        }
+      },
+      
+      "decorativeElements": {
+        "shapes": ["circles", "organic_blobs", "geometric_polygons"],
+        "usage": "background_accents_and_visual_interest",
+        "opacity": "10-30%",
+        "colors": "accent_palette"
+      }
+    },
+    
+    "spacingSystem": {
+      "scale": "8px_base_unit",
+      "sizes": {
+        "xs": "0.5rem",
+        "sm": "1rem",
+        "md": "1.5rem",
+        "lg": "2rem",
+        "xl": "3rem",
+        "2xl": "4rem",
+        "3xl": "6rem"
+      },
+      "sectionSpacing": "6rem_vertical",
+      "elementSpacing": "2rem_between_elements",
+      "description": "Consistent spacing using 8px base unit"
+    },
+    
+    "responsiveDesign": {
+      "breakpoints": {
+        "mobile": "320px",
+        "tablet": "768px",
+        "desktop": "1024px",
+        "large": "1200px"
+      },
+      "approach": "mobile_first",
+      "navigation": "hamburger_menu_on_mobile",
+      "typography": "responsive_scaling",
+      "layout": "stack_on_mobile_side_by_side_on_desktop"
+    },
+    
+    "animationStyle": {
+      "philosophy": "subtle_and_purposeful",
+      "elements": {
+        "hover_effects": "gentle_scale_and_color_transitions",
+        "loading_states": "smooth_skeleton_screens",
+        "page_transitions": "fade_and_slide_combinations",
+        "scroll_animations": "subtle_fade_in_and_slide_up"
+      },
+      "timing": "200-300ms_duration",
+      "easing": "ease_out"
+    },
+    
+    "designPrinciples": {
+      "clarity": "Information hierarchy is clear and scannable",
+      "trust": "Professional appearance builds user confidence",
+      "efficiency": "Streamlined user flows with minimal friction",
+      "personality": "Friendly but professional tone through color and shape",
+      "accessibility": "High contrast ratios and readable typography",
+      "modernism": "Contemporary design trends without sacrificing usability"
+    },
+    
+    "usageGuidelines": {
+      "doUse": [
+        "Generous white space for breathing room",
+        "Consistent color application across sections",
+        "Clear visual hierarchy with typography scale",
+        "Subtle animations to enhance user experience",
+        "Real photography when showing people or products",
+        "Abstract illustrations for concepts and features"
+      ],
+      "dontUse": [
+        "Overly complex layouts that distract from content",
+        "Too many different font weights or sizes",
+        "Harsh drop shadows or outdated effects",
+        "Stock photography that looks obviously staged",
+        "Animation that serves no functional purpose",
+        "Colors outside the defined palette without reason"
+      ]
+    }
+  }
+}
