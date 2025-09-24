@@ -214,7 +214,7 @@ export function ExperienceSection() {
         </div>
 
         {/* Achievements & Awards */}
-        <div className="mb-16">
+        {/* <div className="mb-16">
           <h3 className="text-3xl font-bold text-gray-900 text-center mb-12">
             Awards & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A4E8C] to-[#EC4899]">Recognition</span>
           </h3>
@@ -234,7 +234,7 @@ export function ExperienceSection() {
               </Card>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Call to Action */}
         <div className="text-center">
