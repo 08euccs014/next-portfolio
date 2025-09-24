@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Mail,
   Phone,
@@ -16,10 +17,71 @@ import {
   MessageCircle,
   Calendar,
   Download,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
 } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 export function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Message sent successfully! I\'ll get back to you within 24 hours.'
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus({
+          type: 'error',
+          message: result.error || 'Failed to send message. Please try again.'
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Network error. Please check your connection and try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   const contactInfo = [
     {
       icon: Mail,
@@ -96,75 +158,122 @@ export function ContactSection() {
                 </p>
               </CardHeader>
               <CardContent className="space-y-6 flex-1 flex flex-col">
-                <div className="grid md:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Name *
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        type="text"
+                        placeholder="Your name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        disabled={isSubmitting}
+                        className="border-gray-300 focus:border-[#4A4E8C] focus:ring-[#4A4E8C]"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Email *
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="your@email.com"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        disabled={isSubmitting}
+                        className="border-gray-300 focus:border-[#4A4E8C] focus:ring-[#4A4E8C]"
+                      />
+                    </div>
+                  </div>
+
                   <div>
                     <label
-                      htmlFor="name"
+                      htmlFor="subject"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Name
+                      Subject *
                     </label>
                     <Input
-                      id="name"
+                      id="subject"
+                      name="subject"
                       type="text"
-                      placeholder="Your name"
+                      placeholder="Project inquiry"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      required
+                      disabled={isSubmitting}
                       className="border-gray-300 focus:border-[#4A4E8C] focus:ring-[#4A4E8C]"
                     />
                   </div>
-                  <div>
+
+                  <div className="flex-1">
                     <label
-                      htmlFor="email"
+                      htmlFor="message"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Email
+                      Message *
                     </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="your@email.com"
-                      className="border-gray-300 focus:border-[#4A4E8C] focus:ring-[#4A4E8C]"
+                    <Textarea
+                      id="message"
+                      name="message"
+                      placeholder="Tell me about your project..."
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      disabled={isSubmitting}
+                      className="min-h-[200px] border-gray-300 focus:border-[#4A4E8C] focus:ring-[#4A4E8C]"
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Subject
-                  </label>
-                  <Input
-                    id="subject"
-                    type="text"
-                    placeholder="Project inquiry"
-                    className="border-gray-300 focus:border-[#4A4E8C] focus:ring-[#4A4E8C]"
-                  />
-                </div>
+                  {/* Status Messages */}
+                  {submitStatus.type && (
+                    <Alert className={submitStatus.type === 'success' ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}>
+                      {submitStatus.type === 'success' ? (
+                        <CheckCircle className="h-4 w-4 text-green-600" />
+                      ) : (
+                        <AlertCircle className="h-4 w-4 text-red-600" />
+                      )}
+                      <AlertDescription className={submitStatus.type === 'success' ? 'text-green-800' : 'text-red-800'}>
+                        {submitStatus.message}
+                      </AlertDescription>
+                    </Alert>
+                  )}
 
-                <div className="flex-1">
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    placeholder="Tell me about your project..."
-                    className="min-h-[200px] border-gray-300 focus:border-[#4A4E8C] focus:ring-[#4A4E8C]"
-                  />
-                </div>
-
-                <div className="flex-shrink-0">
-                  <Button
-                    size="lg"
-                    className="w-full bg-[#4A4E8C] hover:bg-[#3B3F7A]"
-                  >
-                    <Send className="w-5 h-5 mr-2" />
-                    Send Message
-                  </Button>
-                </div>
+                  <div className="flex-shrink-0">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={isSubmitting}
+                      className="w-full bg-[#4A4E8C] hover:bg-[#3B3F7A] disabled:opacity-50"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5 mr-2" />
+                          Send Message
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </form>
               </CardContent>
             </Card>
           </div>

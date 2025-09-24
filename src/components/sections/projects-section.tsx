@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useState } from "react";
 import { 
   ExternalLink, 
   Github, 
@@ -16,6 +17,7 @@ import {
 } from "lucide-react";
 
 export function ProjectsSection() {
+  const [activeFilter, setActiveFilter] = useState("All");
   const projects = [
     {
       title: "AI-Powered Document Assistant",
@@ -100,10 +102,54 @@ export function ProjectsSection() {
       github: "https://github.com/mohitagrawal/realtime-analytics-system",
       live: "https://analytics-dashboard.vercel.app",
       featured: false
+    },
+    {
+      title: "ML Model Serving Platform",
+      description: "Production-ready platform for serving machine learning models at scale with automatic scaling, monitoring, and A/B testing capabilities.",
+      image: "/api/placeholder/600/400",
+      technologies: ["Python", "Docker", "Kubernetes", "TensorFlow Serving", "Prometheus", "Grafana", "FastAPI"],
+      category: "ML Infrastructure",
+      icon: Zap,
+      color: "from-[#8B5CF6] to-[#06B6D4]",
+      github: "https://github.com/mohitagrawal/ml-serving-platform",
+      live: "https://ml-platform.vercel.app",
+      featured: true
+    },
+    {
+      title: "VS Code Extension Suite",
+      description: "Comprehensive collection of VS Code extensions for AI development, including code completion, debugging tools, and project templates.",
+      image: "/api/placeholder/600/400",
+      technologies: ["TypeScript", "VS Code API", "Node.js", "Webpack", "Jest", "ESLint"],
+      category: "Developer Tools",
+      icon: Code,
+      color: "from-[#10B981] to-[#3B82F6]",
+      github: "https://github.com/mohitagrawal/vscode-ai-extensions",
+      live: "https://marketplace.visualstudio.com/items?itemName=mohitagrawal.ai-suite",
+      featured: false
+    },
+    {
+      title: "AI Model Training Pipeline",
+      description: "Automated ML pipeline for training, validating, and deploying AI models with comprehensive monitoring and version control.",
+      image: "/api/placeholder/600/400",
+      technologies: ["Python", "MLflow", "Kubeflow", "Docker", "PostgreSQL", "Redis", "Celery"],
+      category: "ML Infrastructure",
+      icon: Database,
+      color: "from-[#F97316] to-[#EC4899]",
+      github: "https://github.com/mohitagrawal/ai-training-pipeline",
+      live: "https://ml-pipeline.vercel.app",
+      featured: false
     }
   ];
 
   const categories = ["All", "AI/ML", "Mobile", "Web App", "ML Infrastructure", "Developer Tools"];
+
+  // Filter projects based on active filter
+  const filteredProjects = activeFilter === "All" 
+    ? projects 
+    : projects.filter(project => project.category === activeFilter);
+
+  const featuredProjects = filteredProjects.filter(project => project.featured);
+  const otherProjects = filteredProjects.filter(project => !project.featured);
 
   return (
     <section id="projects" className="py-20 bg-white">
@@ -131,8 +177,9 @@ export function ProjectsSection() {
           {categories.map((category) => (
             <Button
               key={category}
-              variant={category === "All" ? "default" : "outline"}
-              className={category === "All" ? "bg-[#4A4E8C] hover:bg-[#3B3F7A]" : ""}
+              variant={category === activeFilter ? "default" : "outline"}
+              className={category === activeFilter ? "bg-[#4A4E8C] hover:bg-[#3B3F7A]" : ""}
+              onClick={() => setActiveFilter(category)}
             >
               {category}
             </Button>
@@ -141,11 +188,11 @@ export function ProjectsSection() {
 
         {/* Featured Projects */}
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {projects.filter(project => project.featured).map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <Card key={index} className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
               <div className="relative">
-                <div className={`h-48 bg-gradient-to-br ${project.color} flex items-center justify-center`}>
-                  <project.icon className="w-16 h-16 text-white/80" />
+                <div className={`h-32 bg-gradient-to-br ${project.color} flex items-center justify-center`}>
+                  <project.icon className="w-12 h-12 text-white/80" />
                 </div>
                 <div className="absolute top-4 right-4">
                   <Badge className="bg-white/90 text-gray-900 hover:bg-white">
@@ -194,7 +241,7 @@ export function ProjectsSection() {
 
         {/* Other Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.filter(project => !project.featured).map((project, index) => (
+          {otherProjects.map((project, index) => (
             <Card key={index} className="group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               <div className="relative">
                 <div className={`h-32 bg-gradient-to-br ${project.color} flex items-center justify-center`}>

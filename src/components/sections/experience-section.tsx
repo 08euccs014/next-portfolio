@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { 
   Calendar, 
   MapPin, 
@@ -70,38 +71,17 @@ export function ExperienceSection() {
     }
   ];
 
-  const achievements = [
+  const certifications = [
     {
-      title: "AI Innovation Award",
-      organization: "TechCrunch Disrupt",
+      title: "AWS Certified Cloud Practitioner",
+      organization: "Amazon Web Services",
       year: "2023",
-      description: "Recognized for outstanding contribution to AI-powered document processing",
+      expiry: "2026",
+      description: "Foundational understanding of AWS Cloud concepts, services, and security",
+      skills: ["Cloud Computing", "Amazon Web Services", "Cloud Services", "PaaS"],
       icon: Award,
-      color: "bg-[#EC4899]"
-    },
-    {
-      title: "Best AI Product",
-      organization: "AI Summit 2023",
-      year: "2023",
-      description: "Awarded for innovative conversational AI platform",
-      icon: TrendingUp,
-      color: "bg-[#4A4E8C]"
-    },
-    {
-      title: "Open Source Contributor",
-      organization: "LangChain Community",
-      year: "2022-2023",
-      description: "Active contributor to LangChain and LangGraph open source projects",
-      icon: Users,
-      color: "bg-[#06B6D4]"
-    },
-    {
-      title: "Tech Speaker",
-      organization: "Various Conferences",
-      year: "2022-2023",
-      description: "Spoke at 5+ conferences about AI/ML best practices",
-      icon: Code,
-      color: "bg-[#FCD34D]"
+      color: "bg-[#FF9900]",
+      verified: true
     }
   ];
 
@@ -213,28 +193,63 @@ export function ExperienceSection() {
           ))}
         </div>
 
-        {/* Achievements & Awards */}
-        {/* <div className="mb-16">
+        {/* Certifications */}
+        <div className="mb-16">
           <h3 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            Awards & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A4E8C] to-[#EC4899]">Recognition</span>
+            Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A4E8C] to-[#EC4899]">Certifications</span>
           </h3>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {achievements.map((achievement, index) => (
-              <Card key={index} className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardContent className="p-6">
-                  <div className={`w-16 h-16 ${achievement.color} rounded-2xl flex items-center justify-center mx-auto mb-4`}>
-                    <achievement.icon className="w-8 h-8 text-white" />
+          <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-6 max-w-4xl mx-auto">
+            {certifications.map((cert, index) => (
+              <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <CardContent className="p-8">
+                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
+                    <div className="flex items-center space-x-4 mb-4 lg:mb-0">
+                      <div className={`w-16 h-16 ${cert.color} rounded-2xl flex items-center justify-center flex-shrink-0`}>
+                        <cert.icon className="w-8 h-8 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-2xl font-bold text-gray-900 mb-2">{cert.title}</h4>
+                        <p className="text-lg text-gray-600 mb-2">{cert.organization}</p>
+                        <div className="flex items-center space-x-4">
+                          <Badge variant="outline" className="text-sm">
+                            Issued: {cert.year}
+                          </Badge>
+                          <Badge variant="outline" className="text-sm">
+                            Expires: {cert.expiry}
+                          </Badge>
+                          {cert.verified && (
+                            <div className="flex items-center space-x-1 text-green-600">
+                              <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                                <div className="w-2 h-2 bg-white rounded-full"></div>
+                              </div>
+                              <span className="text-sm font-medium">Verified</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <h4 className="text-lg font-bold text-gray-900 mb-2">{achievement.title}</h4>
-                  <p className="text-sm text-gray-600 mb-2">{achievement.organization}</p>
-                  <Badge variant="outline" className="mb-3">{achievement.year}</Badge>
-                  <p className="text-sm text-gray-500">{achievement.description}</p>
+                  
+                  <p className="text-gray-600 mb-6 text-lg leading-relaxed">
+                    {cert.description}
+                  </p>
+                  
+                  <div>
+                    <h5 className="text-lg font-semibold text-gray-900 mb-4">Associated Skills</h5>
+                    <div className="flex flex-wrap gap-2">
+                      {cert.skills.map((skill, skillIndex) => (
+                        <Badge key={skillIndex} variant="secondary" className="text-sm">
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             ))}
           </div>
-        </div> */}
+        </div>
 
         {/* Call to Action */}
         <div className="text-center">
@@ -244,11 +259,11 @@ export function ExperienceSection() {
               <p className="text-white/90 mb-6">
                 Let's discuss how my experience in AI/ML and full-stack development can help your project succeed.
               </p>
-              <Button size="lg" className="bg-white text-[#4A4E8C] hover:bg-white/90">
-                <Users className="w-5 h-5 mr-2" />
-                <a href="mailto:mohit.agrawal@starlingelevate.com" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-white text-[#4A4E8C] hover:bg-white/90" asChild>
+                <Link href="mailto:mohit.agrawal@starlingelevate.com" target="_blank" rel="noopener noreferrer">
+                  <Users className="w-5 h-5 mr-2" />
                   Let's Connect
-                </a>
+                </Link>
               </Button>
             </CardContent>
           </Card>
