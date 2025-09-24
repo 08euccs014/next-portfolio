@@ -246,7 +246,9 @@ export function ExperienceSection() {
               </p>
               <Button size="lg" className="bg-white text-[#4A4E8C] hover:bg-white/90">
                 <Users className="w-5 h-5 mr-2" />
-                Let's Connect
+                <a href="mailto:mohit.agrawal@starlingelevate.com" target="_blank" rel="noopener noreferrer">
+                  Let's Connect
+                </a>
               </Button>
             </CardContent>
           </Card>

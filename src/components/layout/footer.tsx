@@ -24,31 +24,31 @@ export function Footer() {
       { name: "Contact", href: "#contact" },
     ],
     services: [
-      { name: "AI/ML Development", href: "#" },
-      { name: "Full-Stack Development", href: "#" },
-      { name: "Mobile App Development", href: "#" },
-      { name: "Technical Consulting", href: "#" },
-      { name: "Code Review", href: "#" },
+      { name: "AI/ML Development", href: "#projects" },
+      { name: "Full-Stack Development", href: "#projects" },
+      { name: "Mobile App Development", href: "#projects" },
+      { name: "Technical Consulting", href: "#projects" },
+      { name: "Code Review", href: "#projects" },
     ],
     resources: [
-      { name: "Blog", href: "#" },
+      { name: "Resume", href: "https://docs.google.com/document/d/1S_lc1XTcqGFSSM8mrgdabLLNv_Mm5n3c/edit?usp=sharing&ouid=107764676147050411683&rtpof=true&sd=true" },
       { name: "Case Studies", href: "#" },
-      { name: "Open Source", href: "#" },
-      { name: "Documentation", href: "#" },
-      { name: "Tutorials", href: "#" },
+      // { name: "Open Source", href: "#" },
+      // { name: "Documentation", href: "#" },
+      // { name: "Tutorials", href: "#" },
     ],
     legal: [
-      { name: "Privacy Policy", href: "#" },
-      { name: "Terms of Service", href: "#" },
-      { name: "Cookie Policy", href: "#" },
-      { name: "GDPR", href: "#" },
+      // { name: "Privacy Policy", href: "#" },
+      // { name: "Terms of Service", href: "#" },
+      // { name: "Cookie Policy", href: "#" },
+      // { name: "GDPR", href: "#" },
     ]
   };
 
   const socialLinks = [
-    { name: "GitHub", icon: Github, href: "https://github.com", color: "hover:bg-gray-900" },
-    { name: "LinkedIn", icon: Linkedin, href: "https://linkedin.com", color: "hover:bg-blue-600" },
-    { name: "Twitter", icon: Twitter, href: "https://twitter.com", color: "hover:bg-blue-400" },
+    { name: "GitHub", icon: Github, href: "https://github.com/08euccs014", color: "hover:bg-gray-900" },
+    { name: "LinkedIn", icon: Linkedin, href: "https://linkedin.com/ermohitagrawal", color: "hover:bg-blue-600" },
+    // { name: "Twitter", icon: Twitter, href: "https://twitter.com/08euccs014", color: "hover:bg-blue-400" },
     { name: "Email", icon: Mail, href: "mailto:mohit.agrawal@starlingelevate.com", color: "hover:bg-red-500" },
   ];
 
@@ -133,6 +133,7 @@ export function Footer() {
               {footerLinks.resources.map((link, index) => (
                 <li key={index}>
                   <Link
+                    target="_blank"
                     href={link.href}
                     className="text-white/80 hover:text-white transition-colors duration-200"
                   >
@@ -142,7 +143,7 @@ export function Footer() {
               ))}
             </ul>
             
-            <h4 className="text-lg font-semibold mb-6">Legal</h4>
+            {/* <h4 className="text-lg font-semibold mb-6">Legal</h4>
             <ul className="space-y-3">
               {footerLinks.legal.map((link, index) => (
                 <li key={index}>
@@ -154,7 +155,7 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
         </div>
 

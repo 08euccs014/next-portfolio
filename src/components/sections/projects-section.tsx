@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { 
   ExternalLink, 
   Github, 
@@ -24,8 +25,8 @@ export function ProjectsSection() {
       category: "AI/ML",
       icon: Brain,
       color: "from-[#EC4899] to-[#F97316]",
-      github: "https://github.com",
-      live: "https://example.com",
+      github: "https://github.com/mohitagrawal/ai-document-assistant",
+      live: "https://ai-document-assistant.vercel.app",
       featured: true
     },
     {
@@ -36,56 +37,68 @@ export function ProjectsSection() {
       category: "AI/ML",
       icon: Brain,
       color: "from-[#06B6D4] to-[#8B5CF6]",
-      github: "https://github.com",
-      live: "https://example.com",
+      github: "https://github.com/mohitagrawal/conversational-ai-platform",
+      live: "https://conversational-ai.vercel.app",
       featured: true
     },
     {
-      title: "React Native AI Chat App",
-      description: "Cross-platform mobile application with AI-powered chat capabilities. Real-time messaging with intelligent responses and context awareness.",
+      title: "React Native Mobile App with AI",
+      description: "Cross-platform mobile application featuring AI-powered features including image recognition, natural language processing, and personalized content delivery.",
       image: "/api/placeholder/600/400",
-      technologies: ["React Native", "LangChain", "Firebase", "TypeScript", "Expo"],
+      technologies: ["React Native", "Python", "TensorFlow Lite", "Firebase", "JavaScript", "Expo"],
       category: "Mobile",
       icon: Smartphone,
       color: "from-[#6366F1] to-[#EC4899]",
-      github: "https://github.com",
-      live: "https://example.com",
-      featured: false
+      github: "https://github.com/mohitagrawal/react-native-ai-app",
+      live: "https://expo.dev/@mohitagrawal/ai-mobile-app",
+      featured: true
     },
     {
-      title: "ML Model Management System",
-      description: "Comprehensive platform for managing, training, and deploying machine learning models. Includes model versioning, A/B testing, and monitoring.",
+      title: "Full-Stack Web Application",
+      description: "Enterprise web application with modern UI/UX, real-time features, and backend API integration. Built with React frontend and Node.js backend with comprehensive testing.",
       image: "/api/placeholder/600/400",
-      technologies: ["Python", "TensorFlow", "Docker", "Kubernetes", "Grafana"],
-      category: "ML Infrastructure",
-      icon: Database,
-      color: "from-[#FCD34D] to-[#F97316]",
-      github: "https://github.com",
-      live: "https://example.com",
-      featured: false
-    },
-    {
-      title: "AI Code Assistant",
-      description: "VS Code extension that provides AI-powered code suggestions, refactoring, and documentation generation using advanced language models.",
-      image: "/api/placeholder/600/400",
-      technologies: ["TypeScript", "OpenAI API", "VS Code API", "LangChain", "Webpack"],
-      category: "Developer Tools",
-      icon: Code,
-      color: "from-[#4A4E8C] to-[#06B6D4]",
-      github: "https://github.com",
-      live: "https://example.com",
-      featured: false
-    },
-    {
-      title: "Real-time Analytics Dashboard",
-      description: "Interactive dashboard for monitoring AI model performance, user interactions, and system metrics with real-time updates and visualizations.",
-      image: "/api/placeholder/600/400",
-      technologies: ["React", "D3.js", "WebSocket", "Node.js", "PostgreSQL"],
+      technologies: ["React", "Node.js", "Express", "MongoDB", "JWT", "Jest", "WebSocket"],
       category: "Web App",
       icon: Globe,
+      color: "from-[#FCD34D] to-[#F97316]",
+      github: "https://github.com/mohitagrawal/fullstack-web-app",
+      live: "https://fullstack-app.vercel.app",
+      featured: false
+    },
+    {
+      title: "AI Chatbot Integration",
+      description: "Intelligent chatbot system integrated into web applications with natural language understanding, context awareness, and multi-language support.",
+      image: "/api/placeholder/600/400",
+      technologies: ["Python", "NLTK", "spaCy", "OpenAI API", "Node.js", "WebSocket", "Redis"],
+      category: "AI/ML",
+      icon: Brain,
       color: "from-[#8B5CF6] to-[#EC4899]",
-      github: "https://github.com",
-      live: "https://example.com",
+      github: "https://github.com/mohitagrawal/ai-chatbot-integration",
+      live: "https://ai-chatbot-demo.vercel.app",
+      featured: false
+    },
+    {
+      title: "Microservices Architecture",
+      description: "Scalable microservices architecture with API gateway, service discovery, and containerized deployment. Includes monitoring, logging, and automated CI/CD pipelines.",
+      image: "/api/placeholder/600/400",
+      technologies: ["Node.js", "Docker", "Kubernetes", "Nginx", "Prometheus", "Grafana", "Jenkins"],
+      category: "Web App",
+      icon: Zap,
+      color: "from-[#10B981] to-[#3B82F6]",
+      github: "https://github.com/mohitagrawal/microservices-architecture",
+      live: "https://microservices-demo.vercel.app",
+      featured: false
+    },
+    {
+      title: "Real-time Analytics System",
+      description: "High-performance analytics system processing large datasets with real-time visualization and automated insights generation using machine learning algorithms.",
+      image: "/api/placeholder/600/400",
+      technologies: ["Python", "Apache Kafka", "Elasticsearch", "React", "D3.js", "Redis", "PostgreSQL"],
+      category: "Data Science",
+      icon: Database,
+      color: "from-[#F59E0B] to-[#EF4444]",
+      github: "https://github.com/mohitagrawal/realtime-analytics-system",
+      live: "https://analytics-dashboard.vercel.app",
       featured: false
     }
   ];
@@ -107,8 +120,9 @@ export function ProjectsSection() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            A showcase of my AI/ML projects, full-stack applications, and innovative solutions 
-            built with modern technologies and best practices.
+            A showcase of full-stack development projects spanning 13+ years of experience in AI, Python, 
+            Node.js, and React. From AI-powered applications to scalable web platforms and mobile solutions, 
+            demonstrating expertise across the entire technology stack.
           </p>
         </div>
 
@@ -159,16 +173,20 @@ export function ProjectsSection() {
                   ))}
                 </div>
                 
-                <div className="flex space-x-4 pt-4">
-                  <Button variant="outline" size="sm" className="flex-1">
-                    <Github className="w-4 h-4 mr-2" />
-                    Code
+                {/* <div className="flex space-x-4 pt-4">
+                  <Button variant="outline" size="sm" className="flex-1" asChild>
+                    <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Github className="w-4 h-4 mr-2" />
+                      Code
+                    </Link>
                   </Button>
-                  <Button size="sm" className="flex-1 bg-[#4A4E8C] hover:bg-[#3B3F7A]">
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Live Demo
+                  <Button size="sm" className="flex-1 bg-[#4A4E8C] hover:bg-[#3B3F7A]" asChild>
+                    <Link href={project.live} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Live Demo
+                    </Link>
                   </Button>
-                </div>
+                </div> */}
               </CardContent>
             </Card>
           ))}
@@ -213,16 +231,20 @@ export function ProjectsSection() {
                   )}
                 </div>
                 
-                <div className="flex space-x-2 pt-2">
-                  <Button variant="ghost" size="sm" className="flex-1 text-xs">
-                    <Github className="w-3 h-3 mr-1" />
-                    Code
+                {/* <div className="flex space-x-2 pt-2">
+                  <Button variant="ghost" size="sm" className="flex-1 text-xs" asChild>
+                    <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Github className="w-3 h-3 mr-1" />
+                      Code
+                    </Link>
                   </Button>
-                  <Button variant="ghost" size="sm" className="flex-1 text-xs">
-                    <ExternalLink className="w-3 h-3 mr-1" />
-                    Demo
+                  <Button variant="ghost" size="sm" className="flex-1 text-xs" asChild>
+                    <Link href={project.live} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-3 h-3 mr-1" />
+                      Demo
+                    </Link>
                   </Button>
-                </div>
+                </div> */}
               </CardContent>
             </Card>
           ))}
@@ -232,13 +254,16 @@ export function ProjectsSection() {
         <div className="text-center mt-16">
           <Card className="max-w-2xl mx-auto bg-gradient-to-r from-[#4A4E8C] to-[#EC4899] border-0 text-white">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-4">Interested in My Work?</h3>
+              <h3 className="text-2xl font-bold mb-4">Ready to Build Your Next Project?</h3>
               <p className="text-white/90 mb-6">
-                Let's discuss how I can help bring your AI/ML ideas to life with cutting-edge technology.
+                With 13+ years of full-stack development experience in AI, Python, Node.js, and React, 
+                I can help bring your ideas to life with modern technologies and best practices.
               </p>
-              <Button size="lg" className="bg-white text-[#4A4E8C] hover:bg-white/90">
-                <Zap className="w-5 h-5 mr-2" />
-                Start a Project
+              <Button size="lg" className="bg-white text-[#4A4E8C] hover:bg-white/90" asChild>
+                <Link href="#contact">
+                  <Zap className="w-5 h-5 mr-2" />
+                  Start a Project
+                </Link>
               </Button>
             </CardContent>
           </Card>

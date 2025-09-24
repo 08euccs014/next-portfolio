@@ -2,7 +2,16 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Brain, Code, Zap, Smartphone, Database, Globe, Terminal } from "lucide-react";
+import {
+  ArrowRight,
+  Brain,
+  Code,
+  Zap,
+  Smartphone,
+  Database,
+  Globe,
+  Terminal,
+} from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -20,63 +29,91 @@ export function HeroSection() {
           <div className="text-white space-y-8">
             <div className="space-y-4">
               <div className="flex flex-wrap gap-3">
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30">
+                <Badge
+                  variant="secondary"
+                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
+                >
                   <Brain className="w-4 h-4 mr-2" />
                   AI/ML Specialist
                 </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30">
+                <Badge
+                  variant="secondary"
+                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
+                >
                   <Code className="w-4 h-4 mr-2" />
                   Python
                 </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30">
+                <Badge
+                  variant="secondary"
+                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
+                >
                   <Terminal className="w-4 h-4 mr-2" />
                   NodeJS
                 </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30">
+                <Badge
+                  variant="secondary"
+                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
+                >
                   <Globe className="w-4 h-4 mr-2" />
                   ReactJS
                 </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30">
+                <Badge
+                  variant="secondary"
+                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
+                >
                   <Smartphone className="w-4 h-4 mr-2" />
                   React Native
                 </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30">
+                <Badge
+                  variant="secondary"
+                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
+                >
                   <Database className="w-4 h-4 mr-2" />
                   MongoDB
                 </Badge>
-                <Badge variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30">
+                <Badge
+                  variant="secondary"
+                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
+                >
                   <Zap className="w-4 h-4 mr-2" />
                   LangChain
                 </Badge>
               </div>
-              
+
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
                 Building the Future with{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EC4899] to-[#FCD34D]">
                   AI & Machine Learning
                 </span>
               </h1>
-              
+
               <p className="text-xl lg:text-2xl text-white/90 leading-relaxed max-w-2xl">
-                Full-stack developer specializing in AI/ML applications, LangChain, LangGraph, 
-                and modern web technologies. Transforming ideas into intelligent solutions.
+                Full-stack developer specializing in AI/ML applications,
+                LangChain, LangGraph, and modern web technologies. Transforming
+                ideas into intelligent solutions.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-white text-[#4A4E8C] hover:bg-white/90 text-lg px-8 py-6 h-auto"
               >
                 View My Work
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="lg"
                 className="bg-primary border-white/60 text-white hover:bg-white/10 text-lg px-8 py-6 h-auto"
               >
-                Download Resume
+                <a
+                  href="https://docs.google.com/document/d/1S_lc1XTcqGFSSM8mrgdabLLNv_Mm5n3c/edit?usp=sharing&ouid=107764676147050411683&rtpof=true&sd=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Download Resume
+                </a>
               </Button>
             </div>
 
@@ -106,11 +143,11 @@ export function HeroSection() {
                 <div className="absolute top-4 right-4 w-16 h-16 bg-[#EC4899] rounded-2xl flex items-center justify-center animate-pulse">
                   <Brain className="w-8 h-8 text-white" />
                 </div>
-                
+
                 <div className="absolute bottom-4 left-4 w-12 h-12 bg-[#06B6D4] rounded-xl flex items-center justify-center animate-bounce">
                   <Code className="w-6 h-6 text-white" />
                 </div>
-                
+
                 <div className="absolute top-1/2 right-8 w-10 h-10 bg-[#FCD34D] rounded-lg flex items-center justify-center animate-pulse delay-1000">
                   <Zap className="w-5 h-5 text-white" />
                 </div>
@@ -122,11 +159,11 @@ export function HeroSection() {
                       <Brain className="w-12 h-12 text-white" />
                     </div>
                   </div>
-                  
+
                   <h3 className="text-2xl font-bold text-white mb-2">
                     AI-Powered Solutions
                   </h3>
-                  
+
                   <p className="text-white/80 text-lg">
                     LangChain • LangGraph • React • Node.js
                   </p>
@@ -140,7 +177,7 @@ export function HeroSection() {
                   <div className="text-xs text-gray-600">Models</div>
                 </div>
               </div>
-              
+
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center transform -rotate-12">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-[#EC4899]">AI</div>

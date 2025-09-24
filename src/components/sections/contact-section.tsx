@@ -54,7 +54,7 @@ export function ContactSection() {
     {
       name: "LinkedIn",
       icon: Linkedin,
-      url: "https://linkedin.com/mohitagrawal",
+      url: "https://linkedin.com/ermohitagrawal",
       color: "hover:bg-blue-600",
     },
   ];
@@ -249,7 +249,7 @@ export function ContactSection() {
                  asChild
                >
                  <Link
-                   href="/resume.pdf"
+                   href="https://docs.google.com/document/d/1S_lc1XTcqGFSSM8mrgdabLLNv_Mm5n3c/edit?usp=sharing&ouid=107764676147050411683&rtpof=true&sd=true"
                    target="_blank"
                    rel="noopener noreferrer"
                  >
