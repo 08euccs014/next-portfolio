@@ -3,7 +3,8 @@ import { google } from 'googleapis';
 const blogger = google.blogger('v3');
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: process.cwd() + '/lively-paratext-480611-k2-23fd8f33de60.json',
+  credentials: process.env.GOOGLE_CREDENTIALS ? JSON.parse(process.env.GOOGLE_CREDENTIALS) : undefined,
+  keyFile: !process.env.GOOGLE_CREDENTIALS ? process.cwd() + '/lively-paratext-480611-k2-23fd8f33de60.json' : undefined,
   scopes: ['https://www.googleapis.com/auth/blogger.readonly'],
 });
 
