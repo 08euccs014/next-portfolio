@@ -36,7 +36,7 @@ export async function getPosts(): Promise<BlogPost[]> {
   try {
     const authClient = await auth.getClient();
     const res = await blogger.posts.list({
-      auth: authClient,
+      auth: authClient as any,
       blogId: blogId,
       maxResults: 10,
       fetchBodies: false, // We don't need full body for list
@@ -72,7 +72,7 @@ export async function getPost(id: string): Promise<BlogPost | null> {
   try {
     const authClient = await auth.getClient();
     const res = await blogger.posts.get({
-      auth: authClient,
+      auth: authClient as any,
       blogId: blogId,
       postId: id,
       fetchBody: true,
@@ -92,7 +92,7 @@ export async function getPost(id: string): Promise<BlogPost | null> {
           url: item.author!.image!.url!,
         },
       },
-      images: item.images || [],
+      images: (item.images || []).map((img) => ({ url: img.url || '' })),
     };
   } catch (error) {
     console.error(`Error fetching post ${id} from Blogger:`, error);
