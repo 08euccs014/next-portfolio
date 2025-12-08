@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { 
   ExternalLink, 
   Github, 
@@ -18,6 +18,38 @@ import {
 
 export function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    cardRefs.current.forEach((card, index) => {
+      if (!card) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisibleCards((prev) => new Set([...prev, index]));
+            observer.unobserve(card);
+          }
+        },
+        {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        }
+      );
+
+      observer.observe(card);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, [activeFilter]);
+
   const projects = [
     {
       title: "AI-Powered Document Assistant",
@@ -155,8 +187,11 @@ export function ProjectsSection() {
     <section id="projects" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="border-[#4A4E8C] text-[#4A4E8C] mb-4">
+        <div className="text-center mb-16 animate-slide-up-fade">
+          <Badge 
+            variant="outline" 
+            className="border-[#4A4E8C] text-[#4A4E8C] mb-4 transition-all duration-300 hover:scale-110 hover:shadow-md"
+          >
             Portfolio
           </Badge>
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -174,12 +209,24 @@ export function ProjectsSection() {
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+          {categories.map((category, index) => (
             <Button
               key={category}
               variant={category === activeFilter ? "default" : "outline"}
-              className={category === activeFilter ? "bg-[#4A4E8C] hover:bg-[#3B3F7A]" : ""}
-              onClick={() => setActiveFilter(category)}
+              className={`
+                transition-all duration-300 ease-out
+                ${category === activeFilter 
+                  ? "bg-[#4A4E8C] hover:bg-[#3B3F7A] scale-105 shadow-lg" 
+                  : "hover:scale-105 hover:shadow-md"
+                }
+              `}
+              onClick={() => {
+                setActiveFilter(category);
+                setVisibleCards(new Set());
+              }}
+              style={{
+                transitionDelay: `${index * 30}ms`,
+              }}
             >
               {category}
             </Button>
@@ -188,127 +235,202 @@ export function ProjectsSection() {
 
         {/* Featured Projects */}
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {featuredProjects.map((project, index) => (
-            <Card key={index} className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-              <div className="relative">
-                <div className={`h-32 bg-gradient-to-br ${project.color} flex items-center justify-center`}>
-                  <project.icon className="w-12 h-12 text-white/80" />
-                </div>
-                <div className="absolute top-4 right-4">
-                  <Badge className="bg-white/90 text-gray-900 hover:bg-white">
-                    {project.category}
-                  </Badge>
-                </div>
-              </div>
-              
-              <CardHeader>
-                <CardTitle className="text-2xl text-gray-900 group-hover:text-[#4A4E8C] transition-colors">
-                  {project.title}
-                </CardTitle>
-              </CardHeader>
-              
-              <CardContent className="space-y-4">
-                <p className="text-gray-600 leading-relaxed">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, techIndex) => (
-                    <Badge key={techIndex} variant="secondary" className="text-xs">
-                      {tech}
+          {featuredProjects.map((project, index) => {
+            const isVisible = visibleCards.has(index);
+            return (
+              <Card
+                key={index}
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }}
+                className={`
+                  group overflow-hidden border-0 shadow-lg
+                  transition-all duration-500 ease-out
+                  ${isVisible 
+                    ? "opacity-100 translate-y-0 scale-100" 
+                    : "opacity-0 translate-y-8 scale-95"
+                  }
+                  hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02]
+                `}
+                style={{
+                  transitionDelay: `${index * 100}ms`,
+                }}
+              >
+                <div className="relative overflow-hidden">
+                  <div className={`
+                    h-32 bg-gradient-to-br ${project.color} 
+                    flex items-center justify-center
+                    transition-transform duration-500 ease-out
+                    group-hover:scale-110
+                  `}>
+                    <project.icon className="w-12 h-12 text-white/80 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" />
+                  </div>
+                  <div className="absolute top-4 right-4">
+                    <Badge className="bg-white/90 text-gray-900 hover:bg-white transition-all duration-300 hover:scale-110">
+                      {project.category}
                     </Badge>
-                  ))}
+                  </div>
                 </div>
                 
-                {/* <div className="flex space-x-4 pt-4">
-                  <Button variant="outline" size="sm" className="flex-1" asChild>
-                    <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-4 h-4 mr-2" />
-                      Code
-                    </Link>
-                  </Button>
-                  <Button size="sm" className="flex-1 bg-[#4A4E8C] hover:bg-[#3B3F7A]" asChild>
-                    <Link href={project.live} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Live Demo
-                    </Link>
-                  </Button>
-                </div> */}
-              </CardContent>
-            </Card>
-          ))}
+                <CardHeader>
+                  <CardTitle className="text-2xl text-gray-900 group-hover:text-[#4A4E8C] transition-colors duration-300">
+                    {project.title}
+                  </CardTitle>
+                </CardHeader>
+                
+                <CardContent className="space-y-4">
+                  <p className="text-gray-600 leading-relaxed transition-colors duration-300 group-hover:text-gray-700">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, techIndex) => (
+                      <Badge
+                        key={techIndex}
+                        variant="secondary"
+                        className="text-xs transition-all duration-300 hover:scale-110 hover:shadow-md"
+                        style={{
+                          transitionDelay: `${techIndex * 30}ms`,
+                        }}
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                  
+                  {/* <div className="flex space-x-4 pt-4">
+                    <Button variant="outline" size="sm" className="flex-1" asChild>
+                      <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-4 h-4 mr-2" />
+                        Code
+                      </Link>
+                    </Button>
+                    <Button size="sm" className="flex-1 bg-[#4A4E8C] hover:bg-[#3B3F7A]" asChild>
+                      <Link href={project.live} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Live Demo
+                      </Link>
+                    </Button>
+                  </div> */}
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
         {/* Other Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {otherProjects.map((project, index) => (
-            <Card key={index} className="group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div className="relative">
-                <div className={`h-32 bg-gradient-to-br ${project.color} flex items-center justify-center`}>
-                  <project.icon className="w-12 h-12 text-white/80" />
-                </div>
-                <div className="absolute top-3 right-3">
-                  <Badge className="bg-white/90 text-gray-900 hover:bg-white text-xs">
-                    {project.category}
-                  </Badge>
-                </div>
-              </div>
-              
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg text-gray-900 group-hover:text-[#4A4E8C] transition-colors">
-                  {project.title}
-                </CardTitle>
-              </CardHeader>
-              
-              <CardContent className="space-y-3">
-                <p className="text-sm text-gray-600 line-clamp-3">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-1">
-                  {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                    <Badge key={techIndex} variant="secondary" className="text-xs">
-                      {tech}
+          {otherProjects.map((project, index) => {
+            const cardIndex = featuredProjects.length + index;
+            const isVisible = visibleCards.has(cardIndex);
+            return (
+              <Card
+                key={index}
+                ref={(el) => {
+                  cardRefs.current[cardIndex] = el;
+                }}
+                className={`
+                  group overflow-hidden border-0 shadow-md
+                  transition-all duration-500 ease-out
+                  ${isVisible 
+                    ? "opacity-100 translate-y-0 scale-100" 
+                    : "opacity-0 translate-y-8 scale-95"
+                  }
+                  hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02]
+                `}
+                style={{
+                  transitionDelay: `${index * 80}ms`,
+                }}
+              >
+                <div className="relative overflow-hidden">
+                  <div className={`
+                    h-32 bg-gradient-to-br ${project.color} 
+                    flex items-center justify-center
+                    transition-transform duration-500 ease-out
+                    group-hover:scale-110
+                  `}>
+                    <project.icon className="w-12 h-12 text-white/80 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" />
+                  </div>
+                  <div className="absolute top-3 right-3">
+                    <Badge className="bg-white/90 text-gray-900 hover:bg-white text-xs transition-all duration-300 hover:scale-110">
+                      {project.category}
                     </Badge>
-                  ))}
-                  {project.technologies.length > 3 && (
-                    <Badge variant="secondary" className="text-xs">
-                      +{project.technologies.length - 3}
-                    </Badge>
-                  )}
+                  </div>
                 </div>
                 
-                {/* <div className="flex space-x-2 pt-2">
-                  <Button variant="ghost" size="sm" className="flex-1 text-xs" asChild>
-                    <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-3 h-3 mr-1" />
-                      Code
-                    </Link>
-                  </Button>
-                  <Button variant="ghost" size="sm" className="flex-1 text-xs" asChild>
-                    <Link href={project.live} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-3 h-3 mr-1" />
-                      Demo
-                    </Link>
-                  </Button>
-                </div> */}
-              </CardContent>
-            </Card>
-          ))}
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg text-gray-900 group-hover:text-[#4A4E8C] transition-colors duration-300">
+                    {project.title}
+                  </CardTitle>
+                </CardHeader>
+                
+                <CardContent className="space-y-3">
+                  <p className="text-sm text-gray-600 line-clamp-3 transition-colors duration-300 group-hover:text-gray-700">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-1">
+                    {project.technologies.slice(0, 3).map((tech, techIndex) => (
+                      <Badge
+                        key={techIndex}
+                        variant="secondary"
+                        className="text-xs transition-all duration-300 hover:scale-110 hover:shadow-md"
+                        style={{
+                          transitionDelay: `${techIndex * 20}ms`,
+                        }}
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                    {project.technologies.length > 3 && (
+                      <Badge variant="secondary" className="text-xs transition-all duration-300 hover:scale-110 hover:shadow-md">
+                        +{project.technologies.length - 3}
+                      </Badge>
+                    )}
+                  </div>
+                  
+                  {/* <div className="flex space-x-2 pt-2">
+                    <Button variant="ghost" size="sm" className="flex-1 text-xs" asChild>
+                      <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-3 h-3 mr-1" />
+                        Code
+                      </Link>
+                    </Button>
+                    <Button variant="ghost" size="sm" className="flex-1 text-xs" asChild>
+                      <Link href={project.live} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-3 h-3 mr-1" />
+                        Demo
+                      </Link>
+                    </Button>
+                  </div> */}
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <Card className="max-w-2xl mx-auto bg-gradient-to-r from-[#4A4E8C] to-[#EC4899] border-0 text-white">
+          <Card 
+            className="max-w-2xl mx-auto bg-gradient-to-r from-[#4A4E8C] to-[#EC4899] border-0 text-white
+                       transition-all duration-500 ease-out
+                       hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1"
+          >
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-4">Ready to Build Your Next Project?</h3>
+              <h3 className="text-2xl font-bold mb-4 transition-transform duration-300 hover:scale-105">
+                Ready to Build Your Next Project?
+              </h3>
               <p className="text-white/90 mb-6">
                 With 13+ years of full-stack development experience in AI, Python, Node.js, and React, 
                 I can help bring your ideas to life with modern technologies and best practices.
               </p>
-              <Button size="lg" className="bg-white text-[#4A4E8C] hover:bg-white/90" asChild>
+              <Button 
+                size="lg" 
+                className="bg-white text-[#4A4E8C] hover:bg-white/90 transition-all duration-300 hover:scale-110 hover:shadow-lg" 
+                asChild
+              >
                 <Link href="#contact">
-                  <Zap className="w-5 h-5 mr-2" />
+                  <Zap className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:rotate-12" />
                   Start a Project
                 </Link>
               </Button>

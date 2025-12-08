@@ -160,7 +160,7 @@ export function Footer() {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="mt-12 pt-8 border-t border-white/20">
+        {/* <div className="mt-12 pt-8 border-t border-white/20">
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
             <p className="text-white/80 mb-6">
@@ -177,7 +177,7 @@ export function Footer() {
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Bottom Bar */}
@@ -187,7 +187,7 @@ export function Footer() {
             <div className="flex items-center space-x-2 text-white/80">
               <span>© {currentYear} Mohit Agrawal. Made with</span>
               <Heart className="w-4 h-4 text-red-400 fill-current" />
-              <span>for the AI community.</span>
+              {/* <span>for the AI community.</span> */}
             </div>
             
             <div className="flex items-center space-x-6">

@@ -13,7 +13,8 @@ import {
   GitBranch,
   Shield,
   Cpu,
-  Globe
+  Globe,
+  GitGraph
 } from "lucide-react";
 
 export function SkillsSection() {
@@ -79,7 +80,7 @@ export function SkillsSection() {
     { name: "Figma", icon: Globe, color: "bg-purple-500" },
     { name: "Postman", icon: Zap, color: "bg-orange-600" },
     { name: "Jest", icon: Shield, color: "bg-green-500" },
-    { name: "Webpack", icon: Cpu, color: "bg-blue-700" },
+    { name: "HAProxy", icon: GitGraph, color: "bg-blue-700" },
     { name: "Nginx", icon: Cloud, color: "bg-green-600" },
   ];
 
