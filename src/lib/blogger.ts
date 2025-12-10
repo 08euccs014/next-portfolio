@@ -2,9 +2,23 @@ import { google } from 'googleapis';
 
 const blogger = google.blogger('v3');
 
+let credentials;
+const envCredentials = process.env.GOOGLE_CREDENTIALS || process.env.NEXT_PUBLIC_GOOGLE_CREDENTIALS;
+
+if (envCredentials) {
+  if (process.env.NEXT_PUBLIC_GOOGLE_CREDENTIALS) {
+    console.warn('WARNING: You are using NEXT_PUBLIC_GOOGLE_CREDENTIALS for a service account key. This exposes your private key to the client. Please rename it to GOOGLE_CREDENTIALS in your .env file.');
+  }
+  try {
+    credentials = JSON.parse(envCredentials);
+  } catch (error) {
+    console.error('Failed to parse GOOGLE_CREDENTIALS environment variable. Please ensure it is a valid JSON string.', error);
+  }
+}
+
 const auth = new google.auth.GoogleAuth({
-  credentials: process.env.GOOGLE_CREDENTIALS ? JSON.parse(process.env.GOOGLE_CREDENTIALS) : undefined,
-  keyFile: !process.env.GOOGLE_CREDENTIALS ? process.cwd() + '/lively-paratext-480611-k2-23fd8f33de60.json' : undefined,
+  credentials,
+  keyFile: !credentials ? process.cwd() + '/gcp-key.json' : undefined,
   scopes: ['https://www.googleapis.com/auth/blogger.readonly'],
 });
 
