@@ -97,13 +97,13 @@ export function ContactSection() {
       description: "Mon-Fri from 11am to 6pm",
       color: "from-[#4A4E8C] to-[#6366F1]",
     },
-    {
-      icon: MapPin,
-      title: "Location",
-      value: "Jaipur, Rajasthan, India",
-      description: "Available for remote work",
-      color: "from-[#06B6D4] to-[#8B5CF6]",
-    },
+    // {
+    //   icon: MapPin,
+    //   title: "Location",
+    //   value: "Jaipur, Rajasthan, India",
+    //   description: "Available for remote work",
+    //   color: "from-[#06B6D4] to-[#8B5CF6]",
+    // },
   ];
 
   const socialLinks = [

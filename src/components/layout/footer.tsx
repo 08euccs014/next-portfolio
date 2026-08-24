@@ -19,7 +19,7 @@ export function Footer() {
     navigation: [
       { name: "About", href: "#about" },
       { name: "Skills", href: "#skills" },
-      { name: "Projects", href: "#projects" },
+      { name: "Projects", href: "/projects" },
       { name: "Experience", href: "#experience" },
       { name: "Contact", href: "#contact" },
     ],
@@ -32,7 +32,7 @@ export function Footer() {
     ],
     resources: [
       { name: "Resume", href: "https://docs.google.com/document/d/1S_lc1XTcqGFSSM8mrgdabLLNv_Mm5n3c/edit?usp=sharing&ouid=107764676147050411683&rtpof=true&sd=true" },
-      { name: "Case Studies", href: "#" },
+      { name: "Case Studies", href: "/projects" },
       // { name: "Open Source", href: "#" },
       // { name: "Documentation", href: "#" },
       // { name: "Tutorials", href: "#" },
