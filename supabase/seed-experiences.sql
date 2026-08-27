@@ -22,7 +22,7 @@ insert into public.experiences (
     "Designing scalable AI backends using Python, FastAPI, Node.js and AWS.",
     "Leveraging 13+ years of software engineering experience to build complete production systems around AI."
   ]'::jsonb,
-  '["Python","LangChain","LangGraph","OpenAI","Anthropic","Gemini","RAG","FastAPI","Node.js","AWS"]'::jsonb,
+  '["Python","LangChain","LangGraph","OpenAI","Anthropic","Gemini","RAG","Vector database","Pinecone","PGVector","PostgreSQL","AWS RDS","FastAPI","Node.js","AWS"]'::jsonb,
   'Brain',
   'from-[#EC4899] to-[#F97316]',
   true,
@@ -43,7 +43,7 @@ insert into public.experiences (
     "Worked with AWS Lambda, SQS, DynamoDB, Step Functions and CloudWatch.",
     "Led development using Node.js, React, Next.js, React Native and TypeScript."
   ]'::jsonb,
-  '["Python","LangChain","LangGraph","Gemini","FastAPI","WebSockets","AWS Lambda","SQS","DynamoDB","Step Functions","Node.js","React","Next.js","React Native","TypeScript"]'::jsonb,
+  '["Python","LangChain","LangGraph","Gemini","Vector database","Pinecone","PGVector","PostgreSQL","AWS RDS","FastAPI","WebSockets","AWS Lambda","SQS","DynamoDB","Step Functions","Node.js","React","Next.js","React Native","TypeScript"]'::jsonb,
   'Zap',
   'from-[#4A4E8C] to-[#6366F1]',
   true,

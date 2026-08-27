@@ -16,7 +16,6 @@ import {
   Send,
   MessageCircle,
   Calendar,
-  Download,
   CheckCircle,
   AlertCircle,
   Loader2,
@@ -351,21 +350,6 @@ export function ContactSection() {
            <div className="space-y-4">
              <h3 className="text-xl font-bold text-gray-900">Quick Actions</h3>
              <div className="space-y-3">
-               <Button
-                 size="sm"
-                 variant="outline"
-                 className="justify-start h-12 w-full"
-                 asChild
-               >
-                 <Link
-                   href="https://docs.google.com/document/d/1S_lc1XTcqGFSSM8mrgdabLLNv_Mm5n3c/edit?usp=sharing&ouid=107764676147050411683&rtpof=true&sd=true"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                 >
-                   <Download className="w-4 h-4 mr-3" />
-                   Download Resume
-                 </Link>
-               </Button>
                <Button
                  size="sm"
                  variant="outline"

@@ -126,7 +126,7 @@ export function AboutSection() {
                       <Brain className="w-16 h-16 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                      Mohit Agrawaleloper
+                      Mohit Agrawal
                     </h3>
                     <p className="text-gray-600">
                       Building the future, one algorithm at a time

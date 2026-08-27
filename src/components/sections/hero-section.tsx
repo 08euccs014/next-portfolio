@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -11,7 +12,22 @@ import {
   Database,
   Globe,
   Terminal,
+  Bot,
+  Activity,
 } from "lucide-react";
+
+const heroSkills = [
+  { name: "Agentic AI", icon: Bot },
+  { name: "LangChain", icon: Zap },
+  { name: "Observability", icon: Activity },
+  { name: "AI/ML Specialist", icon: Brain },
+  { name: "Python", icon: Code },
+  { name: "NodeJS", icon: Terminal },
+  { name: "ReactJS", icon: Globe },
+  { name: "React Native", icon: Smartphone },
+  { name: "MongoDB", icon: Database },
+  { name: "Supabase", icon: Database },
+];
 
 export function HeroSection() {
   return (
@@ -29,55 +45,19 @@ export function HeroSection() {
           <div className="text-white space-y-8">
             <div className="space-y-4">
               <div className="flex flex-wrap gap-3">
-                <Badge
-                  variant="secondary"
-                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
-                >
-                  <Brain className="w-4 h-4 mr-2" />
-                  AI/ML Specialist
-                </Badge>
-                <Badge
-                  variant="secondary"
-                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
-                >
-                  <Code className="w-4 h-4 mr-2" />
-                  Python
-                </Badge>
-                <Badge
-                  variant="secondary"
-                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
-                >
-                  <Terminal className="w-4 h-4 mr-2" />
-                  NodeJS
-                </Badge>
-                <Badge
-                  variant="secondary"
-                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
-                >
-                  <Globe className="w-4 h-4 mr-2" />
-                  ReactJS
-                </Badge>
-                <Badge
-                  variant="secondary"
-                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
-                >
-                  <Smartphone className="w-4 h-4 mr-2" />
-                  React Native
-                </Badge>
-                <Badge
-                  variant="secondary"
-                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
-                >
-                  <Database className="w-4 h-4 mr-2" />
-                  MongoDB
-                </Badge>
-                <Badge
-                  variant="secondary"
-                  className="bg-white/20 text-white border-white/30 hover:bg-white/30"
-                >
-                  <Zap className="w-4 h-4 mr-2" />
-                  LangChain
-                </Badge>
+                {heroSkills.map((skill) => {
+                  const Icon = skill.icon;
+                  return (
+                    <Badge
+                      key={skill.name}
+                      variant="secondary"
+                      className="bg-white/20 text-white border-white/30 hover:bg-white/30"
+                    >
+                      <Icon className="w-4 h-4 mr-2" />
+                      {skill.name}
+                    </Badge>
+                  );
+                })}
               </div>
 
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
@@ -98,22 +78,12 @@ export function HeroSection() {
               <Button
                 size="lg"
                 className="bg-white text-[#4A4E8C] hover:bg-white/90 text-lg px-8 py-6 h-auto"
+                asChild
               >
-                View My Work
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="bg-primary border-white/60 text-white hover:bg-white/10 text-lg px-8 py-6 h-auto"
-              >
-                <a
-                  href="https://docs.google.com/document/d/1S_lc1XTcqGFSSM8mrgdabLLNv_Mm5n3c/edit?usp=sharing&ouid=107764676147050411683&rtpof=true&sd=true"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Download Resume
-                </a>
+                <Link href="/projects">
+                  View My Work
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
               </Button>
             </div>
 
@@ -165,7 +135,7 @@ export function HeroSection() {
                   </h3>
 
                   <p className="text-white/80 text-lg">
-                    LangChain • LangGraph • React • Node.js
+                    Agentic AI • LangChain • Observability
                   </p>
                 </div>
               </div>

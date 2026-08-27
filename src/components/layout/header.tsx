@@ -85,16 +85,6 @@ export function Header() {
               className="bg-white text-primary hover:bg-gray-100 border-none"
               asChild
             >
-              <Link href="https://docs.google.com/document/d/1S_lc1XTcqGFSSM8mrgdabLLNv_Mm5n3c/edit?usp=sharing&ouid=107764676147050411683&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">
-                Resume
-              </Link>
-            </Button>
-            <Button 
-              size="sm" 
-              variant="outline"
-              className="bg-white text-primary hover:bg-gray-100 border-none"
-              asChild
-            >
               <Link href="/#contact" rel="noopener noreferrer">
                 Let's Talk
               </Link>
@@ -145,11 +135,6 @@ export function Header() {
                   </nav>
                   
                   <div className="space-y-4 pt-8 border-t">
-                    <Button variant="outline" className="w-full text-primary" asChild>
-                      <Link href="https://docs.google.com/document/d/1S_lc1XTcqGFSSM8mrgdabLLNv_Mm5n3c/edit?usp=sharing&ouid=107764676147050411683&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">
-                        Resume
-                      </Link>
-                    </Button>
                     <Button className="w-full bg-[#4A4E8C] hover:bg-[#3B3F7A]" asChild>
                       <Link href="/#contact" rel="noopener noreferrer">
                         Let's Talk
