@@ -54,10 +54,6 @@ export function CaseStudyView({
             All projects
           </Link>
 
-          <Badge className="mb-6 border-white/20 bg-white/10 text-white hover:bg-white/20">
-            {project.category}
-          </Badge>
-
           <div className="flex items-start gap-4">
             <div className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/10 sm:flex">
               <Icon className="h-7 w-7" />
@@ -112,24 +108,6 @@ export function CaseStudyView({
             ))}
           </div>
         </section>
-
-        {project.workflow.length > 0 && (
-          <section className="mt-20">
-            <SectionLabel>How it was built</SectionLabel>
-            <h2 className="mb-10 text-3xl font-bold text-gray-900">Workflow</h2>
-            <ol className="relative space-y-8 border-l-2 border-[#4A4E8C]/20 pl-8">
-              {project.workflow.map((step, index) => (
-                <li key={`${step.title}-${index}`} className="relative">
-                  <span className="absolute -left-[2.6rem] flex h-8 w-8 items-center justify-center rounded-full bg-[#4A4E8C] text-sm font-semibold text-white">
-                    {index + 1}
-                  </span>
-                  <h3 className="text-xl font-semibold text-gray-900">{step.title}</h3>
-                  <p className="mt-2 text-gray-600 leading-relaxed">{step.description}</p>
-                </li>
-              ))}
-            </ol>
-          </section>
-        )}
 
         {project.screenshots.length > 0 && (
           <section className="mt-20">

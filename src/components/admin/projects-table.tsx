@@ -50,11 +50,42 @@ export function ProjectsTable({ projects }: { projects: Project[] }) {
     }
   }
 
+  async function replaceFromResume() {
+    if (
+      !confirm(
+        "Replace all projects with the 15 resume/Upwork case studies? Existing rows will be deleted."
+      )
+    ) {
+      return;
+    }
+    setBusy(true);
+    setError(null);
+    try {
+      const supabase = createClient();
+      const { error: deleteError } = await supabase.from("projects").delete().neq("id", "00000000-0000-0000-0000-000000000000");
+      if (deleteError) throw deleteError;
+      const rows = FALLBACK_PROJECTS.map((project) => {
+        const { id: _id, created_at: _c, updated_at: _u, ...rest } = project;
+        return toProjectWrite(rest);
+      });
+      const { error: insertError } = await supabase.from("projects").insert(rows);
+      if (insertError) throw insertError;
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Replace failed");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold text-gray-900">Projects</h1>
         <div className="flex gap-2">
+          <Button variant="outline" onClick={replaceFromResume} disabled={busy}>
+            Replace from resume
+          </Button>
           {projects.length === 0 && (
             <Button variant="outline" onClick={seed} disabled={busy}>
               Load starter projects

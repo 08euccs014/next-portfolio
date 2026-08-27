@@ -1,5 +1,6 @@
 import { FALLBACK_PROJECTS } from "@/lib/projects/fallback";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
+import { createPublicClient } from "@/lib/supabase/public";
 import { createClient } from "@/lib/supabase/server";
 import type { Project, Screenshot, TechGroup, WorkflowStep } from "@/types/project";
 
@@ -74,7 +75,7 @@ export async function getPublishedProjects(): Promise<Project[]> {
   }
 
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const { data, error } = await supabase
       .from("projects")
       .select("*")
@@ -103,7 +104,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
   }
 
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const { data, error } = await supabase
       .from("projects")
       .select("*")

@@ -14,7 +14,13 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
   const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const categories = ["All", ...Array.from(new Set(projects.map((p) => p.category)))];
+  const categoryPriority = ["AI/ML", "Mobile", "Web App", "Architecture", "Developer Tools"];
+  const presentCategories = Array.from(new Set(projects.map((p) => p.category)));
+  const categories = [
+    "All",
+    ...categoryPriority.filter((category) => presentCategories.includes(category)),
+    ...presentCategories.filter((category) => !categoryPriority.includes(category)),
+  ];
   const filtered =
     activeFilter === "All"
       ? projects

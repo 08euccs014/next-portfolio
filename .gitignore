@@ -41,3 +41,6 @@ yarn-error.log*
 next-env.d.ts
 glossy-surge-434016-d5-eaea773bf748.json
 lively-paratext-480611-k2-23fd8f33de60.json
+
+.cursor*
+*.temp*

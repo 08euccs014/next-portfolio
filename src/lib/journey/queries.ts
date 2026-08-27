@@ -4,6 +4,7 @@ import {
   FALLBACK_STATS,
 } from "@/lib/journey/fallback";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
+import { createPublicClient } from "@/lib/supabase/public";
 import { createClient } from "@/lib/supabase/server";
 import type { Certification, Experience, JourneyStat } from "@/types/journey";
 
@@ -113,7 +114,7 @@ export async function getPublishedJourney() {
   }
 
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const [experiencesRes, certsRes, statsRes] = await Promise.all([
       supabase
         .from("experiences")
