@@ -17,11 +17,12 @@ export function Footer() {
 
   const footerLinks = {
     navigation: [
-      { name: "About", href: "#about" },
-      { name: "Skills", href: "#skills" },
+      { name: "About", href: "/#about" },
+      { name: "Skills", href: "/#skills" },
       { name: "Projects", href: "/projects" },
-      { name: "Experience", href: "#experience" },
-      { name: "Contact", href: "#contact" },
+      { name: "Case Study", href: "/ai-case-study" },
+      { name: "Experience", href: "/#experience" },
+      { name: "Contact", href: "/#contact" },
     ],
     services: [
       { name: "AI/ML Development", href: "#projects" },
@@ -33,6 +34,7 @@ export function Footer() {
     resources: [
       { name: "Resume", href: "https://docs.google.com/document/d/1S_lc1XTcqGFSSM8mrgdabLLNv_Mm5n3c/edit?usp=sharing&ouid=107764676147050411683&rtpof=true&sd=true" },
       { name: "Case Studies", href: "/projects" },
+      { name: "AI Case Study", href: "/ai-case-study" },
       // { name: "Open Source", href: "#" },
       // { name: "Documentation", href: "#" },
       // { name: "Tutorials", href: "#" },
@@ -130,17 +132,21 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-6">Resources</h4>
             <ul className="space-y-3 mb-8">
-              {footerLinks.resources.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    target="_blank"
-                    href={link.href}
-                    className="text-white/80 hover:text-white transition-colors duration-200"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+              {footerLinks.resources.map((link, index) => {
+                const isExternal = link.href.startsWith("http");
+                return (
+                  <li key={index}>
+                    <Link
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                      href={link.href}
+                      className="text-white/80 hover:text-white transition-colors duration-200"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
             
             {/* <h4 className="text-lg font-semibold mb-6">Legal</h4>

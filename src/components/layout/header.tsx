@@ -30,6 +30,7 @@ export function Header() {
     { name: "About", href: "/#about" },
     { name: "Skills", href: "/#skills" },
     { name: "Projects", href: "/projects" },
+    { name: "Case Study", href: "/ai-case-study" },
     { name: "Experience", href: "/#experience" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/#contact" },
@@ -61,7 +62,7 @@ export function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-6 lg:space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
