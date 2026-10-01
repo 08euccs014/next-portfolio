@@ -69,6 +69,14 @@ function sortProjects(projects: Project[]) {
   });
 }
 
+function withFallbackProjects(projects: Project[]) {
+  const slugs = new Set(projects.map((project) => project.slug));
+  const missing = FALLBACK_PROJECTS.filter(
+    (project) => project.published && !slugs.has(project.slug),
+  );
+  return sortProjects([...projects, ...missing]);
+}
+
 export async function getPublishedProjects(): Promise<Project[]> {
   if (!isSupabaseConfigured()) {
     return sortProjects(FALLBACK_PROJECTS.filter((project) => project.published));
@@ -88,7 +96,7 @@ export async function getPublishedProjects(): Promise<Project[]> {
       return [];
     }
 
-    return (data ?? []).map((row) => mapProject(row as ProjectRow));
+    return withFallbackProjects((data ?? []).map((row) => mapProject(row as ProjectRow)));
   } catch (error) {
     console.error("Failed to load published projects", error);
     return [];
@@ -117,7 +125,11 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       return null;
     }
 
-    return data ? mapProject(data as ProjectRow) : null;
+    if (data) return mapProject(data as ProjectRow);
+    return (
+      FALLBACK_PROJECTS.find((project) => project.slug === slug && project.published) ??
+      null
+    );
   } catch (error) {
     console.error("Failed to load project", error);
     return null;

@@ -2,6 +2,38 @@ import type { Project } from "@/types/project";
 
 export const FALLBACK_PROJECTS: Project[] = [
   {
+    id: "fallback-16",
+    slug: "ai-voice-agent-cold-calling",
+    title: "AI Voice Agent for Cold Calling",
+    summary:
+      "Bilingual AI voice agent for telephone cold calling. Pitches local shopkeepers on selling on Amazon, then logs the transcript and lead sentiment in Frappe CRM.",
+    description:
+      "Built a completed AI voice agent for outbound telephone cold calling, with each call written back to Frappe CRM so the conversation becomes a lead. The agent pitches local shopkeepers on opening an Amazon store, covering fees, GST, returns, and signup, in Hindi or English.\n\nThe live POC runs in the browser with voice providers, Sarvam. The caller speaks naturally, and after hang-up the system keeps the transcript and a lead-sentiment score. Telephone automation follows the same path: place the call, run the advisor, then sync the outcome into Frappe so follow-up does not depend on retyping the conversation.",
+    category: "AI/ML",
+    icon: "Brain",
+    gradient: "from-[#F59E0B] to-[#EF4444]",
+    cover_image_url: null,
+    live_url: "https://ai-voice-agent-we0u.onrender.com/",
+    github_url: null,
+    role: "AI engineer",
+    timeline: null,
+    outcome: "Live bilingual voice POC, with call transcripts and lead sentiment synced to Frappe CRM.",
+    tech_groups: [
+      { label: "Voice", items: ["Sarvam", "Hindi & English"] },
+      { label: "Automation", items: ["Telephone cold calling", "Transcripts", "Lead sentiment"] },
+      { label: "CRM", items: ["Frappe CRM"] },
+    ],
+    workflow: [
+      { title: "Call", description: "Outbound telephone cold calling, with the same advisor available as an in-browser mic POC." },
+      { title: "Pitch", description: "The agent covers Amazon fees, GST, returns, and signup in Hindi or English." },
+      { title: "Sync", description: "Transcript and lead sentiment are written into Frappe CRM." },
+    ],
+    screenshots: [],
+    featured: true,
+    published: true,
+    sort_order: 0,
+  },
+  {
     id: "fallback-1",
     slug: "figma-mockup-generation-tool",
     title: "Figma Mockup Generation Tool",

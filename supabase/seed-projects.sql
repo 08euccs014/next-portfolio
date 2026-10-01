@@ -28,7 +28,8 @@ where slug in (
   'pharmacy-ordering-delivery',
   'ai-industry-classification',
   'test-automation-platform',
-  'truck-telematics-driver-assessment'
+  'truck-telematics-driver-assessment',
+  'ai-voice-agent-cold-calling'
 );
 
 insert into public.projects (
@@ -36,6 +37,29 @@ insert into public.projects (
   cover_image_url, live_url, github_url, role, timeline, outcome,
   tech_groups, workflow, screenshots, featured, published, sort_order
 ) values
+(
+  'ai-voice-agent-cold-calling',
+  'AI Voice Agent for Cold Calling',
+  'Bilingual AI voice agent for telephone cold calling. Pitches local shopkeepers on selling on Amazon, then logs the transcript and lead sentiment in Frappe CRM.',
+  'Built a completed AI voice agent for outbound telephone cold calling, with each call written back to Frappe CRM so the conversation becomes a lead. The agent pitches local shopkeepers on opening an Amazon store, covering fees, GST, returns, and signup, in Hindi or English.
+
+The live POC runs in the browser with two voice providers, Sarvam and Vomyra. The caller speaks naturally, and after hang-up the system keeps the transcript and a lead-sentiment score. Telephone automation follows the same path: place the call, run the advisor, then sync the outcome into Frappe so follow-up does not depend on retyping the conversation.',
+  'AI/ML',
+  'Brain',
+  'from-[#F59E0B] to-[#EF4444]',
+  null,
+  'https://ai-voice-agent-we0u.onrender.com/',
+  null,
+  'AI engineer',
+  null,
+  'Live bilingual voice POC, with call transcripts and lead sentiment synced to Frappe CRM.',
+  '[{"label": "Voice", "items": ["Sarvam", "Vomyra", "Hindi & English"]}, {"label": "Automation", "items": ["Telephone cold calling", "Transcripts", "Lead sentiment"]}, {"label": "CRM", "items": ["Frappe CRM"]}]'::jsonb,
+  '[{"title": "Call", "description": "Outbound telephone cold calling, with the same advisor available as an in-browser mic POC."}, {"title": "Pitch", "description": "The agent covers Amazon fees, GST, returns, and signup in Hindi or English."}, {"title": "Sync", "description": "Transcript and lead sentiment are written into Frappe CRM."}]'::jsonb,
+  '[]'::jsonb,
+  true,
+  true,
+  0
+),
 (
   'figma-mockup-generation-tool',
   'Figma Mockup Generation Tool',
@@ -414,6 +438,7 @@ set
     else category
   end,
   featured = slug in (
+    'ai-voice-agent-cold-calling',
     'figma-mockup-generation-tool',
     'ai-photography-face-recognition',
     'restaurant-ocr-automation',
@@ -421,6 +446,7 @@ set
     'ai-industry-classification'
   ),
   sort_order = case slug
+    when 'ai-voice-agent-cold-calling' then 0
     when 'figma-mockup-generation-tool' then 1
     when 'ai-photography-face-recognition' then 2
     when 'restaurant-ocr-automation' then 3
