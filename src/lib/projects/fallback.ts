@@ -27,6 +27,11 @@ export const FALLBACK_PROJECTS: Project[] = [
       { title: "Answer", description: "Inbound patient calls are handled conversationally, with natural-language triage for service type and urgency." },
       { title: "Check", description: "The agent looks up doctor availability and proposes suitable time slots based on clinic rules." },
       { title: "Book", description: "Confirmed appointments are booked, patient details are captured, and the schedule is synced to clinical systems." },
+    ],
+    screenshots: [],
+    featured: true,
+    published: true,
+    sort_order: 0,
   },
   {
     id: "fallback-1",
